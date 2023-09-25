@@ -1,0 +1,174 @@
+# Copyright 2018-2020 the original author or authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+api = "0.7"
+
+[buildpack]
+  description = "A Cloud Native Buildpack that builds Maven-based applications from source"
+  homepage = "https://github.com/paketo-buildpacks/maven"
+  id = "paketo-buildpacks/maven"
+  keywords = ["java", "maven", "build-system"]
+  name = "Paketo Buildpack for Maven"
+  sbom-formats = ["application/vnd.cyclonedx+json", "application/vnd.syft+json"]
+  version = "{{.version}}"
+
+  [[buildpack.licenses]]
+    type = "Apache-2.0"
+    uri = "https://github.com/paketo-buildpacks/maven/blob/main/LICENSE"
+
+[metadata]
+  include-files = ["LICENSE", "NOTICE", "README.md", "bin/build", "bin/detect", "bin/main", "buildpack.toml"]
+  pre-package = "scripts/build.sh"
+
+  [[metadata.configurations]]
+    build = true
+    default = "-Dmaven.test.skip=true --no-transfer-progress package"
+    description = "the arguments to pass to Maven"
+    name = "BP_MAVEN_BUILD_ARGUMENTS"
+
+  [[metadata.configurations]]
+    build = true
+    default = ""
+    description = "the additionnal arguments (appended to BP_MAVEN_BUILD_ARGUMENTS) to pass to Maven"
+    name = "BP_MAVEN_ADDITIONAL_BUILD_ARGUMENTS"
+
+  [[metadata.configurations]]
+    build = true
+    default = ""
+    description = "the active profiles (comma separated: such as: p1,!p2,?p3) to pass to Maven"
+    name = "BP_MAVEN_ACTIVE_PROFILES"
+
+  [[metadata.configurations]]
+    build = true
+    default = "target/*.[ejw]ar"
+    description = "the built application artifact explicitly.  Supersedes $BP_MAVEN_BUILT_MODULE"
+    name = "BP_MAVEN_BUILT_ARTIFACT"
+
+  [[metadata.configurations]]
+    build = true
+    default = "pom.xml"
+    description = "the location of the main pom.xml file, relative to the application root"
+    detect = true
+    name = "BP_MAVEN_POM_FILE"
+
+  [[metadata.configurations]]
+    build = true
+    description = "the module to find application artifact in"
+    name = "BP_MAVEN_BUILT_MODULE"
+
+  [[metadata.configurations]]
+    build = true
+    default = "false"
+    description = "use maven daemon"
+    name = "BP_MAVEN_DAEMON_ENABLED"
+
+  [[metadata.configurations]]
+    build = true
+    description = "the path to a Maven settings file"
+    name = "BP_MAVEN_SETTINGS_PATH"
+
+  [[metadata.configurations]]
+    build = true
+    default = "3"
+    description = "the Maven version"
+    name = "BP_MAVEN_VERSION"
+
+  [[metadata.configurations]]
+    build = true
+    default = ""
+    description = "colon separated list of glob patterns, matched source files are included"
+    name = "BP_INCLUDE_FILES"
+
+  [[metadata.configurations]]
+    build = true
+    default = ""
+    description = "colon separated list of glob patterns, matched source files are removed"
+    name = "BP_EXCLUDE_FILES"
+
+  [[metadata.configurations]]
+    build = true
+    default = "false"
+    description = "whether to install Yarn/Node binaries based on the presence of a package.json or yarn.lock file"
+    name = "BP_JAVA_INSTALL_NODE"
+
+  [[metadata.configurations]]
+    build = true
+    default = ""
+    description = "configure a project subdirectory to look for `package.json` and `yarn.lock` files"
+    name = "BP_NODE_PROJECT_PATH"
+
+  [[metadata.dependencies]]
+    cpes = ["cpe:2.3:a:apache:maven:3.8.6:*:*:*:*:*:*:*"]
+    id = "maven"
+    name = "Apache Maven"
+    purl = "pkg:generic/apache-maven@3.8.6"
+    sha256 = "ff66b70c830a38d331d44f6c25a37b582471def9a161c93902bac7bea3098319"
+    stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
+    uri = "https://repo1.maven.org/maven2/org/apache/maven/apache-maven/3.9.4/apache-maven-3.9.4-bin.tar.gz"
+    version = "3.9.4"
+
+    [[metadata.dependencies.licenses]]
+      type = "Apache-2.0"
+      uri = "https://www.apache.org/licenses/"
+
+  [[metadata.dependencies]]
+    cpes = ["cpe:2.3:a:apache:maven:4.0.0:*:*:*:*:*:*:*"]
+    id = "maven"
+    name = "Apache Maven"
+    purl = "pkg:generic/apache-maven@4.0.0"
+    sha256 = "6fe1c67d451482c6b2f7f0c9e2ec2693460f55749364fcce5b019c87107ced2e"
+    stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
+    uri = "https://repo1.maven.org/maven2/org/apache/maven/apache-maven/4.0.0-alpha-7/apache-maven-4.0.0-alpha-7-bin.tar.gz"
+    version = "4.0.0"
+
+    [[metadata.dependencies.licenses]]
+      type = "Apache-2.0"
+      uri = "https://www.apache.org/licenses/"
+
+  [[metadata.dependencies]]
+    cpes = ["cpe:2.3:a:apache:mvnd:0.8.2:*:*:*:*:*:*:*"]
+    id = "mvnd"
+    name = "Apache Maven Daemon"
+    purl = "pkg:generic/apache-mvnd@0.8.2"
+    sha256 = "5d33a9a5964905381df1e132a1a4c0cc6e4b7c72f75daa2d799181b68091fe9f"
+    stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
+    uri = "https://github.com/apache/maven-mvnd/releases/download/0.9.0/maven-mvnd-0.9.0-linux-amd64.zip"
+    version = "0.9.0"
+
+    [[metadata.dependencies.licenses]]
+      type = "Apache-2.0"
+      uri = "https://www.apache.org/licenses/"
+
+  [[metadata.dependencies]]
+    cpes = ["cpe:2.3:a:apache:mvnd:1.0.0:*:*:*:*:*:*:*"]
+    id = "mvnd"
+    name = "Apache Maven Daemon"
+    purl = "pkg:generic/apache-mvnd@1.0.0"
+    sha256 = "0ff1c8bab0c05110d6422402715af52241c9eee34edb3118dfba90e505c1d8fb"
+    stacks = ["io.buildpacks.stacks.bionic", "io.paketo.stacks.tiny", "*"]
+    uri = "https://github.com/apache/maven-mvnd/releases/download/1.0.0-m4/maven-mvnd-1.0.0-m4-linux-amd64.zip"
+    version = "1.0.0"
+
+    [[metadata.dependencies.licenses]]
+      type = "Apache-2.0"
+      uri = "https://www.apache.org/licenses/"
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"
+
+[[stacks]]
+  id = "io.paketo.stacks.tiny"
+
+[[stacks]]
+  id = "*"
