@@ -8,8 +8,9 @@ codeowners:
 
 package:
   repositories:   ["serviceacr.azurecr.io/buildpacks/maven"]
-  register:       true
+  register:       false
   registry_token: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
+  include_dependencies: true
 
 docker_credentials:
 - registry: docker.io
