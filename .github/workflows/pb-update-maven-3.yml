@@ -112,4 +112,4 @@ jobs:
                 labels: ${{ steps.buildpack.outputs.version-label }}, type:dependency-upgrade
                 signoff: true
                 title: Bump Maven 3 from ${{ steps.buildpack.outputs.old-version }} to ${{ steps.buildpack.outputs.new-version }}
-                token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
+                token: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
