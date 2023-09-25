@@ -1,4 +1,4 @@
-module github.com/paketo-buildpacks/maven/v6
+module github.com/azure/java-buildpack-maven/v6
 
 go 1.20
 
