@@ -9,12 +9,12 @@ jobs:
         runs-on:
             - ubuntu-latest
         steps:
-            - name: Docker login docker.io
+            - name: Docker login serviceacr.azurecr.io
               if: ${{ (github.event_name != 'pull_request' || ! github.event.pull_request.head.repo.fork) && (github.actor != 'dependabot[bot]') }}
               uses: docker/login-action@v2
               with:
                 password: ${{ secrets.BP_BUILDPACKS_DOCKERHUB_PASSWORD }}
-                registry: docker.io
+                registry: serviceacr.azurecr.io
                 username: ${{ secrets.BP_BUILDPACKS_DOCKERHUB_USERNAME }}
             - uses: actions/setup-go@v4
               with:
