@@ -13,7 +13,7 @@ package:
   include_dependencies: true
 
 docker_credentials:
-- registry: docker.io
+- registry: serviceacr.azurecr.io
   username: ${{ secrets.BP_BUILDPACKS_DOCKERHUB_USERNAME }}
   password: ${{ secrets.BP_BUILDPACKS_DOCKERHUB_PASSWORD }}
 
