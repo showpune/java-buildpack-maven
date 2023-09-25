@@ -1,7 +1,7 @@
 name: Update Go
 "on":
     schedule:
-        - cron: 25 2 * * 1
+        - cron: 56 2 * * 1
     workflow_dispatch: {}
 jobs:
     update:
@@ -69,4 +69,4 @@ jobs:
                 labels: ${{ steps.update-go.outputs.commit-semver }}, type:task
                 signoff: true
                 title: ${{ steps.update-go.outputs.commit-title }}
-                token: ${{ secrets.PAKETO_BOT_GITHUB_TOKEN }}
+                token: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
