@@ -17,7 +17,7 @@ api = "0.9"
 [buildpack]
   description = "A Cloud Native Buildpack that builds Maven-based applications from source"
   homepage = "https://github.com/Azure/java-buildpack-maven"
-  id = "azure-buildpacks/maven"
+  id = "Azure/java-buildpack-maven"
   keywords = ["java", "maven", "build-system"]
   name = "Azure Buildpack for Maven"
   sbom-formats = ["application/vnd.cyclonedx+json", "application/vnd.syft+json"]
