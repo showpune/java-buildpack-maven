@@ -165,10 +165,4 @@ api = "0.9"
       uri = "https://www.apache.org/licenses/"
 
 [[stacks]]
-  id = "io.buildpacks.stacks.bionic"
-
-[[stacks]]
-  id = "io.paketo.stacks.tiny"
-
-[[stacks]]
   id = "*"
