@@ -195,7 +195,7 @@ jobs:
                     --format "${FORMAT}"
                 fi
               env:
-                PACKAGES: serviceacr.azurecr.io/buildpacks/maven
+                PACKAGES: serviceacr.azurecr.io/Azure/java-buildpack-maven
                 PUBLISH: "true"
                 VERSION: ${{ steps.version.outputs.version }}
                 VERSION_MAJOR: ${{ steps.version.outputs.version-major }}
@@ -225,7 +225,7 @@ jobs:
             - if: ${{ false }}
               uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.1
               with:
-                address: serviceacr.azurecr.io/buildpacks/maven@${{ steps.package.outputs.digest }}
-                id: azure-buildpacks/maven
+                address: serviceacr.azurecr.io/Azure/java-buildpack-maven@${{ steps.package.outputs.digest }}
+                id: Azure/java-buildpack-maven
                 token: ${{ secrets.BP_BOT_GITHUB_TOKEN }}
                 version: ${{ steps.version.outputs.version }}
