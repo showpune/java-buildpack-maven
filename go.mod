@@ -1,4 +1,4 @@
-module github.com/paketo-buildpacks/maven/v6/maven
+module github.com/paketo-buildpacks/maven/v6
 
 go 1.20
 
