@@ -29,7 +29,7 @@ api = "0.9"
 
 [metadata]
   include-files = ["LICENSE","README.md", "bin/build", "bin/detect", "bin/main", "buildpack.toml"]
-  pre-package = "scripts/package.sh"
+  pre-package = "scripts/build.sh"
 
   [[metadata.configurations]]
     build = true
